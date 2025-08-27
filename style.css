@@ -1,0 +1,702 @@
+/* ============================
+     Ultimate Trivia Quiz Styles (Revamp v3 - Ocean Mist)
+     - Cohesive ocean palette (cyan/blue) with subtle, airy backgrounds
+     - Harmonized variables and gradients (light/dark parity)
+     - Better readability and contrast, softer shadows
+     - Preserves all selectors and behavior; purely visual refactor
+     ============================ */
+
+  /* 1) CSS Reset and Base */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color-scheme: light dark; /* helps form controls follow theme */
+    color: var(--text);
+
+    /* Fallback: solid background */
+    background-color: var(--bg);
+
+    /* Refined: Ocean Mist layered background */
+    background-image:
+      radial-gradient(1400px 800px at -10% -10%, #eaf6ff 0%, transparent 60%),
+      radial-gradient(1200px 700px at 110% 10%, #e9fbff 0%, transparent 55%),
+      linear-gradient(180deg, var(--bg), #eef4ff 100%);
+    background-attachment: fixed;
+  }
+
+  /* 2) Theme Variables */
+  /* Ocean (default) - light, breezy blues/cyans */
+  :root {
+    /* Light theme base */
+    --bg: #f7fbff;            /* airy light backdrop */
+    --surface: #ffffff;       /* cards/buttons */
+    --surface-2: #f1f5f9;     /* subtle contrast for pills/secondary */
+    --text: #0b1220;          /* near-black for contrast */
+    --text-muted: #5b6472;    /* slate-ish */
+    --border: #d7e0ee;        /* soft but visible */
+
+    /* Accent palette (Ocean) */
+    --primary: #2563eb;       /* blue-600 */
+    --primary-600: #1d4ed8;   /* blue-700 */
+    --primary-700: #1e40af;   /* blue-800 */
+
+    /* Gradient accents */
+    --accent-start: #06b6d4;  /* cyan-500 */
+    --accent-end:   #2563eb;  /* blue-600 */
+
+    --success: #16a34a;
+    --danger: #dc2626;
+    --warning: #d97706;
+
+    --ring: rgba(37, 99, 235, 0.35);
+    --ring-strong: rgba(37, 99, 235, 0.55);
+    --muted: #ecf3ff;
+
+    /* Depth/shadows (soft, lifted) */
+    --shadow-1: 0 1px 2px rgba(17, 24, 39, 0.06), 0 1px 3px rgba(17, 24, 39, 0.06);
+    --shadow-2: 0 10px 20px rgba(2, 28, 71, 0.08), 0 6px 10px rgba(2, 28, 71, 0.06);
+    --shadow-glow: 0 12px 28px color-mix(in oklab, var(--accent-start) 20%, transparent);
+
+    /* Radii */
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --radius-sm: 10px;
+
+    /* Layout */
+    --container-max: 1120px; /* wider on desktop for better visibility */
+  }
+
+  /* Optional theme variants (toggle via body[data-theme]) */
+  body[data-theme="sunset"] {
+    --accent-start: #fb7185; /* rose-400 */
+    --accent-end:   #f59e0b; /* amber-500 */
+    --primary: #ea580c;
+    --primary-600: #c2410c;
+    --primary-700: #9a3412;
+    --ring: rgba(245, 158, 11, 0.35);
+    --ring-strong: rgba(245, 158, 11, 0.55);
+  }
+
+  body[data-theme="forest"] {
+    --accent-start: #10b981; /* emerald-500 */
+    --accent-end:   #3b82f6; /* blue-500 */
+    --primary: #059669;
+    --primary-600: #047857;
+    --primary-700: #065f46;
+    --ring: rgba(16, 185, 129, 0.35);
+    --ring-strong: rgba(16, 185, 129, 0.55);
+  }
+
+  /* Grape theme (vibrant purple/blue) */
+  body[data-theme="grape"] {
+    --accent-start: #8b5cf6; /* violet-500 */
+    --accent-end:   #3b82f6; /* blue-500 */
+    --primary: #7c3aed;
+    --primary-600: #6d28d9;
+    --primary-700: #5b21b6;
+    --ring: rgba(139, 92, 246, 0.35);
+    --ring-strong: rgba(139, 92, 246, 0.55);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b1220;         /* deep ocean */
+      --surface: #0f1a2e;    /* raised cards */
+      --surface-2: #0c1526;  /* subtle layer */
+      --text: #e6edf7;
+      --text-muted: #a8b0c4;
+      --border: #1e2b45;
+
+      --primary: #60a5fa;     /* blue-400 */
+      --primary-600: #4f83f7; /* custom */
+      --primary-700: #0db1f7; /* blue-500 */
+
+      --accent-start: #22d3ee; /* cyan-400/500 */
+      --accent-end:   #3b82f6; /* blue-500 */
+
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+
+      --ring: rgba(96, 165, 250, 0.38);
+      --ring-strong: rgba(96, 165, 250, 0.58);
+      --muted: #0d172a;
+
+      --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.3);
+      --shadow-2: 0 10px 24px rgba(0, 0, 0, 0.55), 0 6px 12px rgba(0, 0, 0, 0.4);
+      --shadow-glow: 0 12px 30px color-mix(in oklab, var(--accent-start) 26%, transparent);
+    }
+  }
+
+  /* 3) Utilities */
+  .hidden {
+    display: none !important;
+  }
+
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 28px 16px;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding: 48px 24px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+  }
+
+  /* Page headline with bold gradient text and soft glow */
+  h1 {
+    margin: 0 0 24px;
+    font-size: clamp(32px, 4.6vw, 52px);
+    line-height: 1.1;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--text); /* fallback solid */
+    text-align: center;
+    text-wrap: balance;
+    filter: drop-shadow(0 10px 22px color-mix(in oklab, var(--accent-start) 14%, transparent));
+  }
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    h1 {
+      background: linear-gradient(92deg, var(--accent-start), var(--accent-end));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+
+  /* 4) Card container for the app (soft glass) */
+  #quiz-container {
+    /* Fallback background */
+    background-color: var(--surface);
+
+    /* Subtle white-to-ice gradient */
+    background-image:
+      linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-2), var(--shadow-glow);
+    padding: 24px;
+    backdrop-filter: saturate(1.1) blur(6px);
+    -webkit-backdrop-filter: saturate(1.1) blur(6px);
+    animation: card-in 320ms cubic-bezier(.2,.9,.2,1);
+  }
+
+  @media (min-width: 640px) {
+    #quiz-container {
+      padding: 32px;
+    }
+  }
+  @media (min-width: 1200px) {
+    #quiz-container {
+      padding: 36px 40px;
+    }
+  }
+
+  @keyframes card-in {
+    from { transform: translateY(6px) scale(.995); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  /* Meta and progress */
+  .meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  #progress {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    /* Fallback background */
+    background-color: var(--surface-2);
+
+    background-image:
+      linear-gradient(180deg, color-mix(in oklab, var(--surface-2) 70%, transparent), transparent);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 800;
+    position: relative;
+  }
+
+  #progress::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 40% 40%, var(--accent-start), var(--accent-end));
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-start) 20%, transparent);
+  }
+
+  /* 5) Question text */
+  #question-text {
+    margin: 12px 0 16px;
+    font-size: clamp(20px, 2.6vw, 26px);
+    font-weight: 800;
+    color: var(--primary-700);
+    letter-spacing: -0.01em;
+  }
+
+  /* 6) Choices as responsive grid of cards */
+  #choice-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr;
+    counter-reset: option;
+  }
+
+  @media (min-width: 520px) {
+    #choice-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1200px) {
+    #choice-list {
+      gap: 16px;
+    }
+  }
+
+  .choice-btn {
+    width: 100%;
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 16px 16px 16px 56px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-1);
+    cursor: pointer;
+    position: relative;
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease,
+      border-color 160ms ease,
+      background-color 160ms ease,
+      color 160ms ease;
+    font-size: 16px;
+    font-weight: 800;
+    min-height: 56px;
+    isolation: isolate; /* keep pseudo elements below text */
+  }
+
+  .choice-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-2);
+    border-color: color-mix(in oklab, var(--accent-start) 40%, var(--border));
+    background: color-mix(in oklab, var(--accent-end) 8%, var(--surface));
+  }
+
+  .choice-btn:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  /* Leading index pill */
+  .choice-btn::before {
+    counter-increment: option;
+    content: counter(option);
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--text);
+
+    /* Fallback background */
+    background-color: var(--surface-2);
+
+    background-image: linear-gradient(140deg, color-mix(in oklab, var(--surface-2) 70%, transparent), transparent);
+    border: 1px solid var(--border);
+    transition: all 160ms ease;
+  }
+
+  /* Accent bar on the left */
+  .choice-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    border-radius: 3px;
+
+    /* Fallback color */
+    background-color: var(--border);
+
+    background-image: linear-gradient(180deg, color-mix(in oklab, var(--accent-start) 0%, transparent), transparent);
+    transition: background 160ms ease, width 160ms ease;
+  }
+
+  .choice-btn:hover::after {
+    background-image: linear-gradient(180deg, var(--accent-start), var(--accent-end));
+    width: 6px;
+  }
+
+  .choice-btn[aria-pressed="true"],
+  .choice-btn.is-selected {
+    border-color: var(--primary);
+    background: color-mix(in oklab, var(--primary) 10%, var(--surface));
+    box-shadow: 0 0 0 4px var(--ring);
+  }
+
+  .choice-btn[aria-pressed="true"]::before,
+  .choice-btn.is-selected::before {
+    background-image: linear-gradient(140deg, var(--accent-start), var(--accent-end));
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .choice-btn[aria-pressed="true"]::after,
+  .choice-btn.is-selected::after {
+    background-image: linear-gradient(180deg, var(--accent-start), var(--accent-end));
+    width: 6px;
+  }
+
+  /* Correct / wrong styling + pulse */
+  @keyframes correctPulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--success) 30%, transparent); }
+    100% { box-shadow: 0 0 0 12px transparent; }
+  }
+  @keyframes wrongShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-2px); }
+    40% { transform: translateX(2px); }
+    60% { transform: translateX(-1px); }
+    80% { transform: translateX(1px); }
+  }
+
+  .choice-btn.is-correct {
+    border-color: color-mix(in oklab, var(--success) 60%, var(--border));
+    background: color-mix(in oklab, var(--success) 10%, var(--surface));
+    animation: correctPulse 600ms ease-out both;
+  }
+  .choice-btn.is-correct::after {
+    background-image: linear-gradient(180deg, color-mix(in oklab, var(--success) 70%, var(--accent-start)), var(--accent-end));
+  }
+
+  .choice-btn.is-wrong {
+    border-color: color-mix(in oklab, var(--danger) 55%, var(--border));
+    background: color-mix(in oklab, var(--danger) 10%, var(--surface));
+    animation: wrongShake 260ms ease-in-out;
+  }
+  .choice-btn.is-wrong::after {
+    background-image: linear-gradient(180deg, color-mix(in oklab, var(--danger) 60%, var(--accent-start)), var(--accent-end));
+  }
+
+  /* Disabled state after confirm */
+  .choice-btn:disabled {
+    opacity: 0.9; /* slightly higher for readability */
+    cursor: not-allowed;
+  }
+
+  /* 7) Buttons */
+  button {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: pointer;
+    transition:
+      background-color 140ms ease,
+      border-color 140ms ease,
+      color 140ms ease,
+      transform 120ms ease,
+      box-shadow 140ms ease,
+      filter 140ms ease;
+    will-change: transform;
+    min-height: 44px;
+  }
+
+  button:hover:not(:disabled) {
+    background: var(--surface-2);
+    transform: translateY(-1px);
+  }
+
+  button:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* Primary with gradient */
+  button.primary {
+    border: none;
+    color: #fff;
+
+    /* Fallback solid primary */
+    background-color: var(--accent-end);
+
+    background-image: linear-gradient(92deg, var(--accent-start), var(--accent-end));
+    box-shadow: 0 10px 20px color-mix(in oklab, var(--accent-end) 24%, transparent);
+  }
+  button.primary:hover:not(:disabled) {
+    filter: brightness(1.03) saturate(1.06);
+    box-shadow: 0 12px 24px color-mix(in oklab, var(--accent-end) 30%, transparent);
+  }
+  button.primary:active:not(:disabled) {
+    filter: brightness(0.98);
+  }
+
+  /* Subtle outline button (used in review) */
+  #review-container button {
+    margin-top: 6px;
+    border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+    color: var(--primary);
+    background: transparent;
+  }
+  #review-container button:hover {
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+  }
+
+  button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--ring);
+  }
+
+  /* Start/Restart button centering */
+  #start-btn,
+  #restart-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 184px;
+    margin: 10px auto;
+  }
+
+  /* 8) Actions layout */
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .actions-inline {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 520px) {
+    .actions {
+      grid-template-columns: auto auto 1fr auto; /* Prev | Preview | spacer | Next/Submit */
+      align-items: center;
+    }
+  }
+
+  /* Optional sticky action bar on tall screens */
+  @media (min-height: 720px) and (min-width: 700px) {
+    .actions {
+      position: sticky;
+      bottom: 0;
+      padding: 10px 0 0;
+
+      /* Fallback background */
+      background-color: var(--surface);
+
+      background-image:
+        linear-gradient(180deg, color-mix(in oklab, var(--surface) 0%, transparent), color-mix(in oklab, var(--surface) 100%, transparent) 80%),
+        transparent;
+      backdrop-filter: blur(4px);
+      border-top: 1px solid var(--border);
+    }
+  }
+
+  /* 9) Preview panel */
+  #preview-panel {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid color-mix(in oklab, var(--primary) 45%, var(--border));
+
+    /* Fallback background */
+    background-color: var(--surface);
+
+    background-image:
+      linear-gradient(180deg, color-mix(in oklab, var(--primary) 10%, var(--surface)) 0%, var(--surface) 100%);
+    box-shadow: var(--shadow-1);
+  }
+
+  #preview-text {
+    margin: 0 0 8px 0;
+    color: var(--primary-700);
+    font-weight: 900;
+  }
+
+  /* 10) Feedback under question */
+  #feedback {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+
+    /* Fallback background */
+    background-color: var(--surface-2);
+
+    background-image: linear-gradient(180deg, color-mix(in oklab, var(--accent-end) 6%, var(--surface-2)), var(--surface-2));
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  /* 11) Results section */
+  #result-container {
+    margin-top: 12px;
+  }
+
+  #result-heading {
+    margin: 0 0 8px;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 900;
+  }
+
+  #score {
+    font-size: clamp(18px, 2.2vw, 24px);
+    font-weight: 900;
+    margin: 0 0 12px;
+    color: var(--text); /* fallback solid */
+  }
+
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    #score {
+      background: linear-gradient(92deg, var(--accent-start), var(--accent-end));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+
+  /* Review list */
+  .review-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .review-item {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    box-shadow: var(--shadow-1);
+  }
+
+  .review-question {
+    margin: 0 0 6px 0;
+    font-weight: 900;
+    color: var(--text);
+  }
+
+  .review-explanation {
+    margin: 6px 0 0;
+    color: var(--text-muted);
+  }
+
+  .review-note {
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  /* 12) Accessibility helpers */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+      animation: none !important;
+    }
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* High contrast support */
+  @media (prefers-contrast: more) {
+    :root {
+      --border: #93a3be;
+      --ring: rgba(37, 99, 235, 0.6);
+    }
+    .choice-btn,
+    button,
+    #quiz-container,
+    .review-item {
+      border-width: 2px;
+    }
+    button.primary {
+      filter: contrast(1.05) saturate(1.05);
+    }
+    button:focus-visible,
+    .choice-btn:focus-visible {
+      box-shadow: 0 0 0 5px var(--ring-strong) !important;
+    }
+  }
+
+  /* Windows High Contrast Mode */
+  @media (forced-colors: active) {
+    * { forced-color-adjust: auto; }
+    button:focus-visible,
+    .choice-btn:focus-visible {
+      outline: 2px solid Highlight !important;
+      outline-offset: 2px;
+      box-shadow: none !important;
+    }
+  }
+
+  /* 13) Fine-tuning spacing on sections */
+  #question-container,
+  #result-container {
+    margin-top: 10px;
+  }
+
+  /* 14) Subtle divider for areas if needed */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 16px 0;
+  }

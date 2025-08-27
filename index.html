@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ultimate Trivia Quiz</title>
+
+    <!-- App stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Ultimate Trivia Quiz</h1>
+
+      <div id="quiz-container" aria-live="polite">
+        <!-- Start -->
+        <button id="start-btn" type="button">Start Quiz</button>
+
+        <!-- Question area (no per-question preview/confirm) -->
+        <section id="question-container" class="hidden" aria-labelledby="question-text">
+          <div class="meta">
+            <span id="progress" aria-live="polite"></span>
+          </div>
+
+          <h2 id="question-text"></h2>
+          <ul id="choice-list" role="list"></ul>
+
+          <div class="actions">
+            <button id="prev-btn" type="button" class="hidden">Previous</button>
+            <button id="next-btn" type="button">Next</button>
+            <button id="review-btn" type="button" class="hidden primary">Review Answers</button>
+          </div>
+        </section>
+
+        <!-- Review (pre-submit preview of all answers, no correctness yet) -->
+        <section id="review-screen" class="hidden" aria-labelledby="review-heading">
+          <h2 id="review-heading">Review Your Answers</h2>
+          <ol id="review-list" class="review-list" aria-live="polite">
+            <!-- Populated by JS -->
+          </ol>
+          <p class="review-note">Tip: Click Edit to change an answer. Come back here to submit.</p>
+          <div class="actions">
+            <button id="review-back-btn" type="button">Back to Questions</button>
+            <button id="review-submit-btn" type="button" class="primary">Submit Quiz</button>
+          </div>
+        </section>
+
+        <!-- Results (score + correctness) -->
+        <section id="result-container" class="hidden" aria-labelledby="result-heading">
+          <h2 id="result-heading">Your Result</h2>
+          <p id="score">0</p>
+
+          <ol id="result-list" class="review-list">
+            <!-- Populated by JS with correctness -->
+          </ol>
+
+          <button id="restart-btn" type="button">Restart</button>
+        </section>
+      </div>
+    </main>
+
+    <!-- App script -->
+    <script src="script.js" defer></script>
+  </body>
+</html>
