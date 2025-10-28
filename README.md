@@ -66,7 +66,7 @@ Question text visibility:
 
 The question title uses a high-contrast color to ensure readability in both light and dark modes. To tweak it, adjust the #question-text color in style.css.
 
-🔧 Where to Add Questions
+## 🔧 Where to Add Questions
 
 Questions and quiz logic live in script.js. You can:
 
