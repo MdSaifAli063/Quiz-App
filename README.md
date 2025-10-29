@@ -82,7 +82,7 @@ Questions and quiz logic live in script.js. You can:
 - Color choices tuned for contrast and readability
 - Motion-reduced experience via prefers-reduced-motion
 
-🌐 Browser Support
+## 🌐 Browser Support
 
 Modern evergreen browsers (Chrome, Edge, Firefox, Safari). The app uses progressive enhancement for newer CSS features and provides sensible fallbacks.
 
