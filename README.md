@@ -84,9 +84,9 @@ Questions and quiz logic live in script.js. You can:
 
 ## 🌐 Browser Support
 
-Modern evergreen browsers (Chrome, Edge, Firefox, Safari). The app uses progressive enhancement for newer CSS features and provides sensible fallbacks.
+- Modern evergreen browsers (Chrome, Edge, Firefox, Safari). The app uses progressive enhancement for newer CSS features and provides sensible fallbacks.
 
-☁️ Deployment
+## ☁️ Deployment
 
 GitHub Pages: push the repository and enable Pages on the main branch
 Netlify/Vercel: drag-and-drop or connect your repo (no build step required)
