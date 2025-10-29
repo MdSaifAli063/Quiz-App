@@ -93,7 +93,7 @@ Questions and quiz logic live in script.js. You can:
   
 Any static hosting works (only three files)
 
-🧩 Icons
+## 🧩 Icons
 
 This README uses an inline icon (🏆). You can also add a favicon to index.html:
 
