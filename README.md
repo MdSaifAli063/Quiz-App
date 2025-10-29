@@ -75,12 +75,12 @@ Questions and quiz logic live in script.js. You can:
 - Tune review and scoring behavior
 - Tip: Keep IDs in index.html (e.g., #question-text, #choice-list, #progress) as they’re used by script.js to render the UI.
 
-♿ Accessibility
+## ♿ Accessibility
 
-Live updates: aria-live="polite" on key regions such as the quiz container and progress
-Clear focus states across interactive elements
-Color choices tuned for contrast and readability
-Motion-reduced experience via prefers-reduced-motion
+- Live updates: aria-live="polite" on key regions such as the quiz container and progress
+- Clear focus states across interactive elements
+- Color choices tuned for contrast and readability
+- Motion-reduced experience via prefers-reduced-motion
 
 🌐 Browser Support
 
