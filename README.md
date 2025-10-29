@@ -101,12 +101,12 @@ This README uses an inline icon (🏆). You can also add a favicon to index.html
 ```
 ## 🛡️ License
 
-MIT recommended for simplicity
+- MIT recommended for simplicity
 
 ## 🤝 Contributing
-Fork the repo
-Create a feature branch
-Commit changes with clear messages
-Open a pull request
-
+- Fork the repo
+- Create a feature branch
+- Commit changes with clear messages
+- Open a pull request
+<br>
 Made with ❤️ for quick demos, classrooms, and coding challenges.
