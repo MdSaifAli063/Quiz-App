@@ -70,10 +70,10 @@ The question title uses a high-contrast color to ensure readability in both ligh
 
 Questions and quiz logic live in script.js. You can:
 
-Add or update the questions array
-Adjust navigation rules
-Tune review and scoring behavior
-Tip: Keep IDs in index.html (e.g., #question-text, #choice-list, #progress) as they’re used by script.js to render the UI.
+- Add or update the questions array
+- Adjust navigation rules
+- Tune review and scoring behavior
+- Tip: Keep IDs in index.html (e.g., #question-text, #choice-list, #progress) as they’re used by script.js to render the UI.
 
 ♿ Accessibility
 
