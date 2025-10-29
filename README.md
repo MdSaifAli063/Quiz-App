@@ -103,7 +103,7 @@ This README uses an inline icon (🏆). You can also add a favicon to index.html
 
 MIT recommended for simplicity
 
-🤝 Contributing
+## 🤝 Contributing
 Fork the repo
 Create a feature branch
 Commit changes with clear messages
