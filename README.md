@@ -88,8 +88,9 @@ Questions and quiz logic live in script.js. You can:
 
 ## ☁️ Deployment
 
-GitHub Pages: push the repository and enable Pages on the main branch
-Netlify/Vercel: drag-and-drop or connect your repo (no build step required)
+- GitHub Pages: push the repository and enable Pages on the main branch
+- Netlify/Vercel: drag-and-drop or connect your repo (no build step required)
+  
 Any static hosting works (only three files)
 
 🧩 Icons
