@@ -96,9 +96,9 @@ Any static hosting works (only three files)
 ## 🧩 Icons
 
 This README uses an inline icon (🏆). You can also add a favicon to index.html:
-
+```
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23F59E0B' d='M14 10h36v10a18 18 0 1 1-36 0z'/%3E%3Cpath fill='%23D97706' d='M22 46h20v6H22z'/%3E%3Ccircle cx='32' cy='26' r='6' fill='%23fff'/%3E%3C/svg%3E" />
-
+```
 🛡️ License
 
 Add your preferred license here (MIT recommended for simplicity).
