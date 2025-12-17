@@ -109,4 +109,5 @@ This README uses an inline icon (🏆). You can also add a favicon to index.html
 - Commit changes with clear messages
 - Open a pull request
 <br>
+
 Made with ❤️ for quick demos, classrooms, and coding challenges.
