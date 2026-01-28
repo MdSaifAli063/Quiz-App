@@ -1,4 +1,4 @@
-// Basic quiz data; replace or load dynamically as needed.
+
 const questions = [
   {
     text: "What is the capital of France?",
@@ -79,15 +79,13 @@ const questions = [
   }
 ];
 
-// State
-let currentIndex = 0;
-let selectedAnswers = Array(questions.length).fill(null); // user selections (index)
-let hasSubmitted = false;
 
-// DOM elements
+let currentIndex = 0;
+let selectedAnswers = Array(questions.length).fill(null); 
+
+
 const startBtn = document.getElementById("start-btn");
 
-// Question screen
 const questionContainer = document.getElementById("question-container");
 const questionText = document.getElementById("question-text");
 const choiceList = document.getElementById("choice-list");
