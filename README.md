@@ -17,7 +17,7 @@ A fast, responsive, and accessible trivia quiz you can run in any modern browser
 
 ## 📸 Screenshot
 
-![image]()
+![image](https://github.com/MdSaifAli063/Quiz-App/blob/84531adbf5b69b6d434e8af34a5da7a7012c326a/Screenshot%202026-01-28%20200950.png)
 
 ## 🚀 Getting Started
 
